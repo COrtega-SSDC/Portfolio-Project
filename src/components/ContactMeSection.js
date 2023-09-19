@@ -29,13 +29,13 @@ const LandingSection = () => {
       comment: ''
     },
     onSubmit: (values) => {
-      submit(values)
+      submit('https://john.com/contactme', values)
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required(),
       email: Yup.string().email('Invalid email address').required('Email is Required'),
       type: Yup.mixed().oneOf(['hireMe', 'openSource', 'other']).optional(),
-      comment: Yup.string().min(25).required('Comments are required')
+      comment: Yup.string().min(25, "Must be atleast 25 characters").required('Comments are required')
     }),
   });
 
@@ -128,7 +128,6 @@ const LandingSection = () => {
                 colorScheme="purple"
                 width="full"
                 isLoading={isLoading}
-                disabled={response}
                 loadingText="Submitting">
                 Submit
               </Button>
