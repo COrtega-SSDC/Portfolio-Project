@@ -31,34 +31,7 @@ const projects = [
 ];
 
 const ProjectsSection = () => {
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [headerVisible, setHeaderVisible] = useState(true);
-  const headerRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > lastScrollY) {
-        // Scrolling down
-        setHeaderVisible(false);
-      } else {
-        // Scrolling up
-        setHeaderVisible(true);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    // Clean up the event listener
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [lastScrollY]);
-
-
+  
   return (
     <FullScreenSection
       backgroundColor="#14532d"
@@ -74,11 +47,6 @@ const ProjectsSection = () => {
         display="grid"
         gridTemplateColumns="repeat(2,minmax(0,1fr))"
         gridGap={8}
-        ref={headerRef}
-        style={{
-          transform: headerVisible ? 'translateY(0)' : 'translateY(-200px)',
-          transition: 'transform 0.3s ease-in-out' // This is just a sample transition; you might have already defined a transition in your original code.
-        }}
       >
         {projects.map((project) => (
           <Card
